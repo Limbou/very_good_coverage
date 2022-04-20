@@ -64,8 +64,8 @@ function run() {
     if (!isValidBuild) {
       core.setFailed(
         `${coverageString} is less than min_coverage ${minCoverage}\n\n` +
-          'Lines not covered:\n' +
-          linesMissingCoverageByFile.map((line) => `  ${line}`).join('\n')
+        'Lines not covered:\n' +
+        linesMissingCoverageByFile.map((line) => `  ${line}`).join('\n')
       );
     }
   });
@@ -97,7 +97,7 @@ async function reportCoverageComment(
   totalHits,
   coverageString
 ) {
-  const gitHubToken = core.getInput('github-token').trim();
+  const gitHubToken = core.getInput('github_token').trim();
   const projectNameInput = core.getInput('project_name');
   if (gitHubToken !== '' && github.context.eventName === 'pull_request') {
     try {
@@ -140,7 +140,7 @@ async function postOrUpdateComment(commentBody, octokit, projectName) {
   let commentId;
   try {
     const comments = (await octokit.issues.listComments(commentInfo)).data;
-    for (let i = comments.length; i--; ) {
+    for (let i = comments.length; i--;) {
       const c = comments[i];
       if (isCommentByBot(c, projectName)) {
         commentId = c.id;

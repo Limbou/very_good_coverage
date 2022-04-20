@@ -15,7 +15,7 @@ inputs:
   exclude:
     description: 'list of files you would like to exclude from coverage'
     required: false
-  github-token:
+  github_token:
     description: 'GitHub token required for coverage details comment to be posted'
     required: false
   report_coverage_comment:
